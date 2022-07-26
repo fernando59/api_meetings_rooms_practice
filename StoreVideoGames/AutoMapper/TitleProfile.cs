@@ -9,7 +9,7 @@ namespace StoreVideoGames.AutoMapper
 
         public TitleProfile()
         {
-            CreateMap<CreateTitleDTO,Title>();
+            //CreateMap<CreateTitleDTO,Title>();
         }
     }
 }
