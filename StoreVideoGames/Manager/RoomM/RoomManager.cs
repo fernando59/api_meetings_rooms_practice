@@ -1,28 +1,91 @@
-﻿using EFDataAccess.Models;
+﻿using AutoMapper;
+using EFDataAccess.Models;
 using StoreVideoGames.DTOs.RoomDTOs;
+using StoreVideoGames.Repositories.RoomRespository;
 
 namespace StoreVideoGames.Manager.RoomM
 {
     public class RoomManager : IRoomManager
     {
-        public Task<ManagerResult<Room>> AddAsync(CreateRoomDTO createRoomDTO)
+        private readonly IRoomRepository _repository;
+        private readonly IMapper _mapper;
+
+        public RoomManager(IRoomRepository repository, IMapper mapper)
         {
-            throw new NotImplementedException();
+            _repository = repository;
+            _mapper = mapper;
+        }
+        public async Task<ManagerResult<Room>> AddAsync(CreateRoomDTO createRoomDTO)
+        {
+            var managerResult = new ManagerResult<Room>();
+            try
+            {
+                var entity = _mapper.Map<Room>(createRoomDTO);
+                await _repository.AddAsync(entity);
+                managerResult.Message = "Add Successfully";
+                return managerResult;
+            }
+            catch (Exception e)
+            {
+                managerResult.Success = false;
+                managerResult.Message = e.Message;
+                return managerResult;
+            }
         }
 
-        public Task<ManagerResult<Room>> DeleteAsync(int id)
+        public async Task<ManagerResult<Room>> DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            var managerResult = new ManagerResult<Room>();
+            var RoomEntity = await _repository.GetByIdAsync(id);
+            if (RoomEntity == null)
+            {
+                managerResult.Success = false;
+                managerResult.Message = "Not exist Room";
+                return managerResult;
+            }
+
+            var entity = _mapper.Map<Room>(RoomEntity);
+            await _repository.DeleteAsync(entity);
+            managerResult.Message = "Delete Successfully";
+            return managerResult;
         }
 
-        public Task<ManagerResult<Room>> GetAsync()
+        public async Task<ManagerResult<Room>> GetAsync()
         {
-            throw new NotImplementedException();
+            var managerResult = new ManagerResult<Room>();
+            managerResult.Data = await _repository.GetAllAsync();
+            return managerResult;
         }
 
-        public Task<ManagerResult<Room>> UpdateAsync(int id, CreateRoomDTO updateRoomDTO)
+        public async  Task<ManagerResult<Room>> UpdateAsync(int id, CreateRoomDTO updateRoomDTO)
         {
-            throw new NotImplementedException();
+            var managerResult = new ManagerResult<Room>();
+            try
+            {
+                var RoomEntity = await _repository.GetByIdAsync(id);
+
+                if (RoomEntity == null)
+                {
+                    managerResult.Success = false;
+                    managerResult.Message = "Not exist Room";
+                    return managerResult;
+                }
+                RoomEntity.name = updateRoomDTO.name;
+                RoomEntity.description = updateRoomDTO.description;
+                RoomEntity.capacity = updateRoomDTO.capacity;
+                RoomEntity.isEnable = updateRoomDTO.isEnable;
+
+                var entity = _mapper.Map<Room>(updateRoomDTO);
+                await _repository.UpdateAsync(RoomEntity);
+                managerResult.Message = "Update Successfully";
+                return managerResult;
+            }
+            catch (Exception e)
+            {
+                managerResult.Success = false;
+                managerResult.Message = e.Message;
+                return managerResult;
+            }
         }
     }
 }
