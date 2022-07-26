@@ -7,8 +7,6 @@ namespace StoreVideoGames.DTOs.EmployeeDTOs
         public string name { get; set; }
 
         [StringLength(300)]
-        public string description { get; set; }
-        public int capacity { get; set; }
-        public bool isEnable { get; set; } = false;
+        public string position{ get; set; }
     }
 }

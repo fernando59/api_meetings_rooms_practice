@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using EFDataAccess.Models;
+using StoreVideoGames.DTOs.EmployeeDTOs;
 
 namespace StoreVideoGames.AutoMapper
 {
@@ -6,7 +8,7 @@ namespace StoreVideoGames.AutoMapper
     {
         public EmployeeProfile()
         {
-            //CreateMap<CreateTitleDTO,Title>();
+            CreateMap<CreateEmployeeDTO,Employee>();
         }
     }
 }
