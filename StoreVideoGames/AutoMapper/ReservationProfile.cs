@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using EFDataAccess.Models;
+using StoreVideoGames.DTOs.ReservationDTOs;
 
 namespace StoreVideoGames.AutoMapper
 {
@@ -6,7 +8,7 @@ namespace StoreVideoGames.AutoMapper
     {
         public ReservationProfile()
         {
-            //CreateMap<CreateTitleDTO,Title>();
+            CreateMap<CreateReservationDTO,Reservation>();
         }
     }
 }

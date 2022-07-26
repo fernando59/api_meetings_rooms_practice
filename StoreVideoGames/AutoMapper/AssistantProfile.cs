@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using EFDataAccess.Models;
+using StoreVideoGames.DTOs.AssistantDTOs;
 
 namespace StoreVideoGames.AutoMapper
 {
@@ -6,7 +8,7 @@ namespace StoreVideoGames.AutoMapper
     {
         public AssistantProfile()
         {
-            //CreateMap<CreateTitleDTO,Title>();
+            CreateMap<CreateAssistantDTO,Assistant>();
         }
     }
 }

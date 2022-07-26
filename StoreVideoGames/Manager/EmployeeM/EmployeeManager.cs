@@ -75,7 +75,7 @@ namespace StoreVideoGames.Manager.EmployeeM
                 EmployeeEntity.name = updateEmployeeDTO.position;
                 EmployeeEntity.position = updateEmployeeDTO.name;
 
-                var entity = _mapper.Map<Employee>(updateEmployeeDTO);
+                //var entity = _mapper.Map<Employee>(updateEmployeeDTO);
                 await _repository.UpdateAsync(EmployeeEntity);
                 managerResult.Message = "Update Successfully";
                 return managerResult;

@@ -75,7 +75,7 @@ namespace StoreVideoGames.Manager.RoomM
                 RoomEntity.capacity = updateRoomDTO.capacity;
                 RoomEntity.isEnable = updateRoomDTO.isEnable;
 
-                var entity = _mapper.Map<Room>(updateRoomDTO);
+                //var entity = _mapper.Map<Room>(updateRoomDTO);
                 await _repository.UpdateAsync(RoomEntity);
                 managerResult.Message = "Update Successfully";
                 return managerResult;
