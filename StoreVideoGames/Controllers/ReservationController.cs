@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using StoreVideoGames.Manager.ReservationM;
 
 namespace StoreVideoGames.Controllers
 {
@@ -7,5 +8,12 @@ namespace StoreVideoGames.Controllers
     [ApiController]
     public class ReservationController : ControllerBase
     {
+        private readonly IReservationManager _reservationManager;
+
+        public ReservationController(IReservationManager reservationManager)
+        {
+            _reservationManager = reservationManager;
+        }
+
     }
 }

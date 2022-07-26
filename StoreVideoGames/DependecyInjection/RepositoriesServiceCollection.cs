@@ -1,4 +1,8 @@
-﻿using StoreVideoGames.Manager.TitleM;
+﻿using StoreVideoGames.Manager.AssistantM;
+using StoreVideoGames.Manager.EmployeeM;
+using StoreVideoGames.Manager.ReservationM;
+using StoreVideoGames.Manager.RoomM;
+using StoreVideoGames.Manager.TitleM;
 using StoreVideoGames.Repositories;
 using StoreVideoGames.Repositories.AssistantRepository;
 using StoreVideoGames.Repositories.EmployeeRepository;
@@ -15,7 +19,10 @@ namespace StoreVideoGames.DependecyInjection
                     .AddScoped<IReservationRepository, ReservationRepository>()
                     .AddScoped<IAssistantRepository, AssistantRepository>()
                     //Managers
-                    .AddScoped<ITitleManager, TitleManager>();
+                    .AddScoped<IRoomManager, RoomManager>()
+                    .AddScoped<IEmployeeManager, EmployeeManager>()
+                    .AddScoped<IReservationManager, ReservationManager>()
+                    .AddScoped<IAssistantManager, AssistantManager>();
 
     }
 }
