@@ -8,5 +8,7 @@ namespace StoreVideoGames.Repositories.ReservationRepository
         public ReservationRepository(ApplicationDbContext context) : base(context)
         {
         }
+
+
     }
 }

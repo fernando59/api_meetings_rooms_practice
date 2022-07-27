@@ -4,5 +4,6 @@ namespace StoreVideoGames.Repositories.ReservationRepository
 {
     public interface IReservationRepository : IRepository<Reservation>
     {
+
     }
 }

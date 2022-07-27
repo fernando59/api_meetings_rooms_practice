@@ -70,6 +70,8 @@ namespace StoreVideoGames.Manager.RoomM
                     managerResult.Message = "Not exist Room";
                     return managerResult;
                 }
+
+
                 RoomEntity.name = updateRoomDTO.name;
                 RoomEntity.description = updateRoomDTO.description;
                 RoomEntity.capacity = updateRoomDTO.capacity;
